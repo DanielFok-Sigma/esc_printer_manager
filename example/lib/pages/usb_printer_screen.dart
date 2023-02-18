@@ -1,8 +1,7 @@
-import 'package:esc_printer_manager/models/usb_printer.dart';
-import 'package:esc_printer_manager/services/usb_printer_manager.dart';
+import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../service.dart';
+import '../helper.dart';
 
 class USBPrinterScreen extends StatefulWidget {
   @override
@@ -13,13 +12,12 @@ class _USBPrinterScreenState extends State<USBPrinterScreen> {
   bool _isLoading = false;
   List<USBPrinter> _printers = [];
   USBPrinterManager? _manager;
-  List<int> _data = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("USB Printer Screen"),
+        title: const Text("USB Printer Screen"),
       ),
       body: ListView(
         children: [
@@ -27,7 +25,7 @@ class _USBPrinterScreenState extends State<USBPrinterScreen> {
               .map((printer) => ListTile(
                     title: Text("${printer.name}"),
                     subtitle: Text("${printer.address}"),
-                    leading: Icon(Icons.usb),
+                    leading: const Icon(Icons.usb),
                     onTap: () => _connect(printer),
                     onLongPress: () {
                       _startPrinter();
@@ -38,8 +36,9 @@ class _USBPrinterScreenState extends State<USBPrinterScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: _isLoading ? Icon(Icons.stop) : Icon(Icons.play_arrow),
         onPressed: _isLoading ? null : _scan,
+        child:
+            _isLoading ? const Icon(Icons.stop) : const Icon(Icons.play_arrow),
       ),
     );
   }
@@ -68,20 +67,15 @@ class _USBPrinterScreenState extends State<USBPrinterScreen> {
   }
 
   _startPrinter() async {
-    if (_data.isEmpty) {
-      final content = Demo.getShortReceiptContent();
-      var bytes = await WebcontentConverter.contentToImage(
-        content: content,
-        executablePath: WebViewHelper.executablePath(),
-      );
-      var service = ESCPrinterService(bytes);
-      var data = await service.getBytes();
-      if (mounted) setState(() => _data = data);
-    }
+    List<int> bytes = [];
+
+    final profile = await CapabilityProfile.load();
+    final generator = Generator(PaperSize.mm58, profile);
+    bytes += printStyle(bytes, generator);
 
     if (_manager != null) {
-      print("isConnected ${_manager!.isConnected}");
-      _manager!.writeBytes(_data, isDisconnect: false);
+      debugPrint("isConnected ${_manager!.isConnected}");
+      _manager!.writeBytes(bytes, isDisconnect: false);
     }
   }
 }

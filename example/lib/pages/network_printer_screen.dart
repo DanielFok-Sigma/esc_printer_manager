@@ -1,9 +1,7 @@
-import 'package:esc_printer_manager/models/network_printer.dart';
-import 'package:esc_printer_manager/services/network_printer_manager.dart';
+import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:flutter/material.dart';
 
-
-import '../service.dart';
+import '../helper.dart';
 
 class NetWorkPrinterScreen extends StatefulWidget {
   @override
@@ -14,7 +12,7 @@ class _NetWorkPrinterScreenState extends State<NetWorkPrinterScreen> {
   bool _isLoading = false;
   List<NetworkPrinter> _printers = [];
   NetworkPrinterManager? _manager;
-  List<int> _data = [];
+
   String _name = "default";
 
   @override
@@ -46,7 +44,7 @@ class _NetWorkPrinterScreenState extends State<NetWorkPrinterScreen> {
               .map((printer) => ListTile(
                     title: Text("${printer.name}"),
                     subtitle: Text("${printer.address}"),
-                    leading: Icon(Icons.cable),
+                    leading: const Icon(Icons.cable),
                     onTap: () => _connect(printer),
                     onLongPress: () {
                       _startPrinter();
@@ -57,8 +55,9 @@ class _NetWorkPrinterScreenState extends State<NetWorkPrinterScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: _isLoading ? Icon(Icons.stop) : Icon(Icons.play_arrow),
         onPressed: _isLoading ? null : _scan,
+        child:
+            _isLoading ? const Icon(Icons.stop) : const Icon(Icons.play_arrow),
       ),
     );
   }
@@ -87,25 +86,15 @@ class _NetWorkPrinterScreenState extends State<NetWorkPrinterScreen> {
   }
 
   _startPrinter() async {
-    // if (_data.isEmpty) {
-    final content = Demo.getShortReceiptContent();
-    var bytes = await WebcontentConverter.contentToImage(
-      content: content,
-      executablePath: WebViewHelper.executablePath(),
-    );
-    var stopwatch = Stopwatch()..start();
-    var service = ESCPrinterService(bytes);
-    var data = await service.getBytes(name: _name);
+    List<int> bytes = [];
 
-    print("Start print data $_name");
-
-    if (mounted) setState(() => _data = data);
+    final profile = await CapabilityProfile.load();
+    final generator = Generator(PaperSize.mm58, profile);
+    bytes += printStyle(bytes, generator);
 
     if (_manager != null) {
-      print("isConnected ${_manager!.isConnected}");
-      await _manager!.writeBytes(_data, isDisconnect: true);
-      WebcontentConverter.logger
-          .info("completed executed in ${stopwatch.elapsed}");
+      debugPrint("isConnected ${_manager!.isConnected}");
+      await _manager!.writeBytes(bytes, isDisconnect: true);
     }
   }
 }

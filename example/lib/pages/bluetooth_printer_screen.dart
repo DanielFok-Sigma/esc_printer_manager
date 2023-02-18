@@ -1,6 +1,9 @@
+import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:esc_printer_manager/models/bluetooth_printer.dart';
 import 'package:esc_printer_manager/services/bluetooth_printer_manager.dart';
+import 'package:esc_printer_manager_example/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../service.dart';
 
@@ -70,91 +73,17 @@ class _BluetoothPrinterScreenState extends State<BluetoothPrinterScreen> {
   }
 
   _startPrinter() async {
-    final content = Demo.getShortReceiptContent();
-    var bytes = await WebcontentConverter.contentToImage(content: content);
-    var service = ESCPrinterService(bytes);
-    var data = await service.getBytes(paperSize: PaperSize.mm58);
+    List<int> bytes = [];
+
+    final profile = await CapabilityProfile.load();
+    final generator = Generator(PaperSize.mm58, profile);
+    bytes += printStyle(bytes, generator);
+
     if (_manager != null) {
-      print("isConnected ${_manager!.isConnected}");
-      _manager!.writeBytes(data, isDisconnect: false);
+      debugPrint("isConnected ${_manager!.isConnected}");
+      _manager!.writeBytes(bytes, isDisconnect: false);
     }
   }
 
-
-  List<int> printStyle2(List<int> bytes, Generator generator) {
-    bytes += generator.setGlobalCodeTable('CP1252');
-
-    bytes += generator.text('Receipt',
-        styles: const PosStyles(align: PosAlign.center));
-    bytes += generator.hr();
-    bytes += generator.row([
-      PosColumn(text: 'Item', width: 6),
-      PosColumn(
-          text: 'Price',
-          width: 3,
-          styles: const PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: 'Total',
-          width: 3,
-          styles: const PosStyles(align: PosAlign.right)),
-    ]);
-
-    bytes += generator.row([
-      PosColumn(text: '1X ITEM 1', width: 6),
-      PosColumn(
-          text: '88.00',
-          width: 3,
-          styles: const PosStyles(align: PosAlign.right)),
-      PosColumn(
-          text: '88.00',
-          width: 3,
-          styles: const PosStyles(align: PosAlign.right)),
-    ]);
-
-    bytes += generator.row([
-      PosColumn(text: '', width: 1),
-      PosColumn(text: '2X SUB ITEM 1', width: 11),
-    ]);
-
-    // bytes += generator.row([
-    //   PosColumn(text: '', width: 1),
-    //   PosColumn(text: '3X SUB ITEM 2', width: 11),
-    // ]);
-
-    bytes += generator.hr();
-    bytes += generator.row([
-      PosColumn(
-          text: 'TOTAL',
-          width: 6,
-          styles: const PosStyles(
-            bold: true,
-            height: PosTextSize.size1,
-            width: PosTextSize.size1,
-          )),
-      PosColumn(
-          text: "\$ 100.00",
-          width: 6,
-          styles: const PosStyles(
-            bold: true,
-            align: PosAlign.right,
-            height: PosTextSize.size1,
-            width: PosTextSize.size1,
-          )),
-    ]);
-
-    bytes += generator.hr(ch: '=', linesAfter: 1);
-
-    bytes += generator.text('Thank you!',
-        styles: const PosStyles(align: PosAlign.center, bold: true));
-
-    final String timestamp =
-    DateFormat('MM/dd/yyyy H:m').format(DateTime.now());
-    bytes += generator.text(timestamp,
-        styles: const PosStyles(align: PosAlign.center), linesAfter: 1);
-
-    bytes += generator.cut();
-
-    return bytes;
-  }
 
 }

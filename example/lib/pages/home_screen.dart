@@ -14,26 +14,26 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("POS PRINTER MANAGER"),
+        title: const Text("ESC PRINTER MANAGER"),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text("Network Printer (android, ios, desktop)"),
+            title: const Text("Network Printer (android, ios, desktop)"),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => NetWorkPrinterScreen()));
             },
           ),
           ListTile(
-            title: Text("Bluetooth Printer (android, ios:ble)"),
+            title: const Text("Bluetooth Printer (android, ios:ble)"),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => BluetoothPrinterScreen()));
             },
           ),
           ListTile(
-            title: Text("USB Printer (desktop:windows, android)"),
+            title: const Text("USB Printer (desktop:windows, android)"),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => USBPrinterScreen()));
