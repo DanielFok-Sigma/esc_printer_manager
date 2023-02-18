@@ -1,0 +1,51 @@
+name: esc_printer_manager
+description: A ESC Printer Manager Plugin.
+version: 0.0.1
+
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  esc_pos_utils_plus: ^2.0.1+6
+  blue_thermal_printer: ^1.2.3
+  network_info_plus: ^3.0.2
+  easy_logger: ^0.0.2
+  printing: ^5.6.6
+  win32: ^4.1.1
+  ffi: ^2.0.1
+  flutter_usb_printer: ^0.1.0
+
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.daniel.plugin.esc_printer_manager
+        pluginClass: EscPrinterManagerPlugin
+      ios:
+        pluginClass: EscPrinterManagerPlugin
+      linux:
+        pluginClass: EscPrinterManagerPlugin
+      macos:
+        pluginClass: EscPrinterManagerPlugin
+      windows:
+        pluginClass: EscPrinterManagerPluginCApi
+      web:
+        pluginClass: EscPrinterManagerWeb
+        fileName: esc_printer_manager_web.dart
+
+
