@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   esc_printer_manager
-  network_info_plus
   printing
 )
 
