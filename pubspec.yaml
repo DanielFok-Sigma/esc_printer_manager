@@ -1,7 +1,7 @@
 name: esc_printer_manager
 description: A ESC Printer Manager Plugin.
 version: 0.0.1+1
-
+publish_to: 'none'
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
