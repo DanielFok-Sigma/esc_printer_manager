@@ -1,11 +1,8 @@
 import 'dart:io';
 
-import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
 
-import '../enums/connection_response.dart';
 import '../esc_printer_manager.dart';
-import '../models/network_printer.dart';
 import '../models/pos_printer.dart';
 import 'network_service.dart';
 import 'printer_manager.dart';

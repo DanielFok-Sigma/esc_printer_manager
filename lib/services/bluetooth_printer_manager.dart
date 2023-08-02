@@ -2,12 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:blue_thermal_printer/blue_thermal_printer.dart' as thermal;
-import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
 import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../enums/connection_response.dart';
-import '../models/bluetooth_printer.dart';
 import '../models/pos_printer.dart';
 import 'bluetooth_service.dart';
 import 'printer_manager.dart';

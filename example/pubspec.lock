@@ -143,7 +143,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.2+2"
+    version: "0.0.4+3"
   fake_async:
     dependency: transitive
     description:
@@ -165,6 +165,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_imin_printer:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "85814870bb274fc02a4c9c5ae861ee3dbc00bbf7"
+      url: "https://github.com/DanielFok-Sigma/flutter_imin_printer.git"
+    source: git
+    version: "0.0.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -461,5 +470,5 @@ packages:
     source: hosted
     version: "6.2.2"
 sdks:
-  dart: ">=2.19.2 <3.0.0"
+  dart: ">=2.19.6 <3.0.0"
   flutter: ">=3.7.0"

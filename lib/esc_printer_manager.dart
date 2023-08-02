@@ -1,7 +1,6 @@
 
 import 'package:easy_logger/easy_logger.dart';
 
-import 'esc_printer_manager_platform_interface.dart';
 
 export 'models/network_printer.dart';
 export 'models/bluetooth_printer.dart';
@@ -28,7 +27,5 @@ class EscPrinterManager {
     ],
   );
 
-  Future<String?> getPlatformVersion() {
-    return EscPrinterManagerPlatform.instance.getPlatformVersion();
-  }
+
 }
