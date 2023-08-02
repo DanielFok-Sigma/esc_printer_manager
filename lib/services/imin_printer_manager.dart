@@ -1,4 +1,5 @@
 import 'package:esc_printer_manager/enums/connection_response.dart';
+import 'package:esc_printer_manager/models/imin_printer.dart';
 import 'package:esc_printer_manager/services/printer_manager.dart';
 import 'package:flutter_imin_printer/flutter_imin_printer.dart';
 import 'package:flutter_imin_printer/models/column_text.dart';
@@ -22,6 +23,21 @@ class IminPrinterManager extends PrinterManager {
     } else {
       return ConnectionResponse.timeout;
     }
+  }
+
+
+  static Future<List<IminPrinter>> discover() async {
+    var results = [
+      IminPrinter(
+        id: 'imin_printer',
+        name: 'Imin Printer',
+        address: '11:22:33:44:55:66',
+        deviceId: 1,
+        vendorId: 1,
+        productId: 1,
+      )
+    ];
+    return results;
   }
 
 
