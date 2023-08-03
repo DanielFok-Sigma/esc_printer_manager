@@ -68,6 +68,11 @@ class IminPrinterManager extends PrinterManager {
     return ConnectionResponse.success;
   }
 
+  Future<ConnectionResponse> partialCut() async {
+    await _flutterIminPrinter.partialCut();
+    return ConnectionResponse.success;
+  }
+
 
   @override
   Future<ConnectionResponse> disconnect({Duration? timeout}) async {
