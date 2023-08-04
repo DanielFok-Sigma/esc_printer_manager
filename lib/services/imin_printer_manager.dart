@@ -2,6 +2,7 @@ import 'package:esc_printer_manager/enums/connection_response.dart';
 import 'package:esc_printer_manager/models/imin_printer.dart';
 import 'package:esc_printer_manager/services/printer_manager.dart';
 import 'package:flutter_imin_printer/flutter_imin_printer.dart';
+import 'package:flutter_imin_printer/models/barcode_text.dart';
 import 'package:flutter_imin_printer/models/column_text.dart';
 import 'package:flutter_imin_printer/models/printer_text.dart';
 
@@ -57,8 +58,8 @@ class IminPrinterManager extends PrinterManager {
     return ConnectionResponse.success;
   }
 
-  Future<ConnectionResponse> printBarcode(String barcode) async {
-    await _flutterIminPrinter.printBarcode(barcode);
+  Future<ConnectionResponse> printBarcode(BarcodeText barcodeText) async {
+    await _flutterIminPrinter.printBarcode(barcodeText);
     return ConnectionResponse.success;
   }
 
