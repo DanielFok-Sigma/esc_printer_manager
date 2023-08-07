@@ -16,14 +16,20 @@ class IminPrinterManager extends PrinterManager {
   @override
   Future<ConnectionResponse> connect({Duration? timeout}) async {
 
-    _flutterIminPrinter.initSDK();
-    String result = await _flutterIminPrinter.getPrinterStatus() ?? '99';
+    try{
+      _flutterIminPrinter.initSDK();
+      String result = await _flutterIminPrinter.getPrinterStatus() ?? '99';
 
-    if (result == '0') {
-      return ConnectionResponse.success;
-    } else {
+      if (result == '0') {
+        return ConnectionResponse.success;
+      } else {
+        return ConnectionResponse.timeout;
+      }
+    } catch (e) {
       return ConnectionResponse.timeout;
     }
+
+
   }
 
 
