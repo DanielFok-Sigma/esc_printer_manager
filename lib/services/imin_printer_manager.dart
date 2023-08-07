@@ -1,6 +1,7 @@
 import 'package:esc_printer_manager/enums/connection_response.dart';
 import 'package:esc_printer_manager/models/imin_printer.dart';
 import 'package:esc_printer_manager/services/printer_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_imin_printer/flutter_imin_printer.dart';
 import 'package:flutter_imin_printer/models/barcode_text.dart';
 import 'package:flutter_imin_printer/models/column_text.dart';
@@ -25,7 +26,11 @@ class IminPrinterManager extends PrinterManager {
       } else {
         return ConnectionResponse.timeout;
       }
-    } catch (e) {
+    } catch (e,s) {
+
+      debugPrint('connect error: $e');
+      debugPrint('connect stacktrace: $s');
+
       return ConnectionResponse.timeout;
     }
 
