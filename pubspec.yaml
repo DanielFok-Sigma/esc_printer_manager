@@ -1,6 +1,6 @@
 name: esc_printer_manager
 description: A ESC Printer Manager Plugin.
-version: 0.0.9+8
+version: 0.0.10+9
 
 
 environment:
@@ -18,8 +18,8 @@ dependencies:
 #  printing: ^5.6.6
 #  win32: ^4.1.4
 #  ffi: ^2.0.1
-#  flutter_usb_printer:
-#    git: https://github.com/DanielFok-Sigma/flutter_usb_printer.git
+  flutter_usb_printer:
+    git: https://github.com/DanielFok-Sigma/flutter_usb_printer.git
 
   esc_pos_utils_plus: ^2.0.2
   blue_thermal_printer: ^1.2.3
@@ -28,7 +28,7 @@ dependencies:
   printing: ^5.10.4
   win32: ^5.0.6
   ffi: ^2.0.2
-  flutter_usb_printer: ^0.1.0+1
+#  flutter_usb_printer: ^0.1.0+1
   flutter_imin_printer:
     git: https://github.com/DanielFok-Sigma/flutter_imin_printer.git
 

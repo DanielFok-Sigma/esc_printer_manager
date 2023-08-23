@@ -143,7 +143,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.9+8"
+    version: "0.0.10+9"
   fake_async:
     dependency: transitive
     description:
@@ -190,10 +190,11 @@ packages:
   flutter_usb_printer:
     dependency: transitive
     description:
-      name: flutter_usb_printer
-      sha256: "5e83c1e03cdedd2e41ad3f3a2ce7c628fdcc489d03b5b40e3020e2df4ea1ce40"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "02b1ba95bee09f596faa3f5c3020e0f6cdc8d7c1"
+      url: "https://github.com/DanielFok-Sigma/flutter_usb_printer.git"
+    source: git
     version: "0.1.0+1"
   flutter_web_plugins:
     dependency: transitive
