@@ -85,6 +85,16 @@ class IminPrinterManager extends PrinterManager {
     return ConnectionResponse.success;
   }
 
+  Future<ConnectionResponse> printHR() async {
+    await _flutterIminPrinter.printHR();
+    return ConnectionResponse.success;
+  }
+
+  Future<ConnectionResponse> printHR2() async {
+    await _flutterIminPrinter.printHR2();
+    return ConnectionResponse.success;
+  }
+
 
   @override
   Future<ConnectionResponse> disconnect({Duration? timeout}) async {
