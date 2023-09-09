@@ -1,6 +1,6 @@
 name: esc_printer_manager
 description: A ESC Printer Manager Plugin.
-version: 0.0.11+10
+version: 0.0.12+11
 
 
 environment:
