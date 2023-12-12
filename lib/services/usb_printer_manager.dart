@@ -2,18 +2,14 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
+import 'package:drago_usb_printer/drago_usb_printer.dart';
 import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:esc_printer_manager/services/extension.dart';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_usb_printer/flutter_usb_printer.dart';
+// import 'package:flutter_usb_printer/flutter_usb_printer.dart';
 import 'package:win32/win32.dart';
 
-import '../enums/connection_response.dart';
-import '../models/pos_printer.dart';
-import '../models/usb_printer.dart';
-import 'printer_manager.dart';
 import 'usb_service.dart';
 
 /// USB Printer
@@ -22,7 +18,8 @@ class USBPrinterManager extends PrinterManager {
   Generator? generator;
 
   /// usb_serial
-  var usbPrinter = FlutterUsbPrinter();
+  // var usbPrinter = FlutterUsbPrinter();
+  DragoUsbPrinter usbPrinter = DragoUsbPrinter();
 
   /// [win32]
   Pointer<IntPtr>? phPrinter = calloc<HANDLE>();

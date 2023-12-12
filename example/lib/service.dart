@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
+import 'package:esc_printer_manager/esc_printer_manager.dart';
 import 'package:image/image.dart' as img;
 
 class ESCPrinterService {
@@ -12,7 +12,7 @@ class ESCPrinterService {
   ESCPrinterService(this.receipt);
 
   Future<List<int>> getBytes({
-    PaperSize paperSize: PaperSize.mm80,
+    PaperSize paperSize = PaperSize.mm80,
     CapabilityProfile? profile,
     String name = "default",
   }) async {
