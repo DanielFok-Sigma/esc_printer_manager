@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../esc_printer_manager.dart';
-import '../models/pos_printer.dart';
 import 'network_service.dart';
-import 'printer_manager.dart';
 
 /// Network Printer
 class NetworkPrinterManager extends PrinterManager {

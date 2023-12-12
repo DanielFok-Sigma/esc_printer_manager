@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_usb_printer/flutter_usb_printer.dart';
 import 'package:win32/win32.dart';
 
-import '../models/pos_printer.dart';
-import 'printer_manager.dart';
 import 'usb_service.dart';
 
 /// USB Printer

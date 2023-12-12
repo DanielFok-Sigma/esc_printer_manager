@@ -1,4 +1,4 @@
-import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
+import 'package:esc_pos_utils_plus/esc_pos_utils_plus.dart';
 
 import '../enums/connection_response.dart';
 import '../models/pos_printer.dart';
